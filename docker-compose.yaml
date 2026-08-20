@@ -2,18 +2,21 @@ version: '3.8'
 
 services:
   db:
-    image: postgres:24-alpine
+    image: postgres:18-alpine
     environment:
       POSTGRES_DB: 'peptide_db'
       POSTGRES_USER: 'admin'
-      POSTGRES_PASSWORD: 'secret code'
+      POSTGRES_PASSWORD: 'secret_code'
 
   train:
     build:
       context: ./python
       dockerfile: 'PythonDockerfile'
+    ports:
+      - "8080:8080"
     depends_on:
       - db
+
 
   api:
     build:
