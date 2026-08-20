@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:24-alpine
+    environment:
+      POSTGRES_DB: 'peptide_db'
+      POSTGRES_USER: 'admin'
+      POSTGRES_PASSWORD: 'secret code'
+
+  train:
+    build:
+      context: ./python
+      dockerfile: 'PythonDockerfile'
+    depends_on:
+      - db
+
+  api:
+    build:
+      context: ./java
+      dockerfile: 'JavaDockerfile'
+    depends_on:
+      - db
+      - train
+
+
+
+
+
