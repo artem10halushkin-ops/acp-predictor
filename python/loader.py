@@ -1,6 +1,7 @@
 import pandas as pd
 import kagglehub
 import os
+from sqlalchemy import create_engine
 
 
 path = kagglehub.dataset_download("anuragupadhyaya/anticancer-peptides-data-set")
