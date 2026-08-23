@@ -12,7 +12,7 @@ file_lungs = pd.read_csv(csv_file_lungs)
 file_breast = pd.read_csv(cvs_file_breast)
 
 
-eng = create_engine("postgressql//admin:secret_code@db-5432/peptide_db")
+eng = create_engine("postgresql://admin:secret_code@db:5432/peptide_db")
 
 file_lungs.to_sql(name="peptides_l", con=eng , if_exists="replace" , index = False)
 file_breast.to_sql(name="peptides_b",con=eng , if_exists="replace", index = False)

@@ -6,4 +6,4 @@ COPY . .
 
 LABEL authors="artemmacpro"
 
-CMD ["python3", "trainer.py"]
+CMD ["python3", "loader.py"]
