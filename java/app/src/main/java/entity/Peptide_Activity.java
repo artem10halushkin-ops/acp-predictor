@@ -19,6 +19,10 @@ class Peptide_Activity {
     @JoinColumn(name = "disease_id")
     private Disease disease;
 
+
+    @Column(name = "activity_class")
+    private String activityClass;
+
     public Peptide_Activity() {
     }
 
