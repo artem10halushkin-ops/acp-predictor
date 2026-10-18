@@ -1,20 +1,19 @@
 package Controller;
 
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @RestController
-@RequestMapping(consumes = {MediaType.APPLICATION_JSON_VALUE})
+@RequestMapping("api/peptides")
 class ServerController {
 
-    @PostMapping("")
-    public ResponseEntity<Boolean> postSamples(@RequestBody  ) {
+    @PostMapping("/upload")
+    public ResponseEntity<String> postSamples(@RequestParam("file") MultipartFile file) {
 
-
+        return ResponseEntity.noContent().build();
     }
-
-
 
 
 }
