@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("api/peptides")
-class   ServerController {
+class ServerController {
 
     @PostMapping("/upload")
     public ResponseEntity<String> postSamples(@RequestParam("file") MultipartFile file) {

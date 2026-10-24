@@ -1,18 +1,15 @@
 package service;
 
-import entity.Disease;
 import org.springframework.stereotype.Service;
-import repository.DiseaseRepository;
-import repository.PeptideRepository;
 
 
 @Service
-class DiseaseService {
+class DiseaseRepository {
 
-    private final DiseaseRepository diseaseRepository;
+    private final repository.DiseaseRepository diseaseRepository;
 
 
-    public DiseaseService(DiseaseRepository diseaseRepository) {
+    public DiseaseRepository(repository.DiseaseRepository diseaseRepository) {
         this.diseaseRepository = diseaseRepository;
 
     }
