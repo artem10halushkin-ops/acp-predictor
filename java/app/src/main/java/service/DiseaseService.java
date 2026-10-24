@@ -4,12 +4,12 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-class DiseaseRepository {
+class DiseaseService {
 
     private final repository.DiseaseRepository diseaseRepository;
 
 
-    public DiseaseRepository(repository.DiseaseRepository diseaseRepository) {
+    public DiseaseService(repository.DiseaseRepository diseaseRepository) {
         this.diseaseRepository = diseaseRepository;
 
     }
