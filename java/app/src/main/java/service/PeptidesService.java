@@ -1,8 +1,6 @@
-package Service;
+package service;
 
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
 
 @Service
 class PeptidesServices {
