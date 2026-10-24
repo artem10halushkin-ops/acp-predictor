@@ -1,14 +1,18 @@
 package service;
 
 import org.springframework.stereotype.Service;
+import repository.PeptideRepository;
+
 
 @Service
-class PeptidesServices {
-    //private Set<Integer, > dataset;
+class PeptidesService {
+
+    private final PeptideRepository peptideRepository;
 
 
-    public PeptidesServices() {
+    public PeptidesService(PeptideRepository peptideRepository) {
+        this.peptideRepository = peptideRepository;
 
-        //this.dataset = new HashSet<>();
     }
+
 }
