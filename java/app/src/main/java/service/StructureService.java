@@ -13,9 +13,9 @@ import repository.PeptideRepository;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.UTFDataFormatException;
 import java.nio.charset.StandardCharsets;
-import java.util.Optional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class StructureService {
@@ -104,6 +104,20 @@ public class StructureService {
 
 
         return 0;
+    }
+
+
+    public List<Peptide> getAllActiveSequences() {
+
+        List<Peptide> peptides = new ArrayList<>();
+
+
+        peptides = this.peptideActivityRepository.findAll().stream()
+                .filter(peptideActivity ->
+                        peptideActivity.getActivityClass().equals("mod. active") || peptideActivity.getActivityClass().equals("very active"))
+                .map(p -> p.getPeptide()).toList();
+
+        return peptides;
     }
 
 }

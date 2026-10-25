@@ -1,12 +1,15 @@
 package controller;
 
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import service.StructureService;
+
+import java.io.File;
 
 @Controller
 @RequestMapping("api/data")
@@ -19,7 +22,7 @@ public class MainController {
     }
 
 
-    @PostMapping("")
+    @PostMapping("/upload")
     public void uploadTable(MultipartFile file) {
 
         switch (this.structureService.upload(file)) {
@@ -36,6 +39,13 @@ public class MainController {
         }
 
 
+    }
+
+    @GetMapping("/download/")
+    public ResponseEntity<byte[]> getActiveSequences() {
+
+
+        return ResponseEntity.ok().build();
     }
 
 
