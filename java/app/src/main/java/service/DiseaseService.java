@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-class DiseaseService {
+public class DiseaseService {
 
     private final repository.DiseaseRepository diseaseRepository;
 

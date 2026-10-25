@@ -5,7 +5,7 @@ import repository.PeptideRepository;
 
 
 @Service
-class PeptidesService {
+public class PeptidesService {
 
     private final PeptideRepository peptideRepository;
 
