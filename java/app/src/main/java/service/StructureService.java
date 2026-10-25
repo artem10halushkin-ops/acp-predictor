@@ -57,7 +57,7 @@ public class StructureService {
             if (disease == null) {
                 Disease newDisease = new Disease();
                 newDisease.setName(name);
-                this.diseaseRepository.save(newDisease);
+                disease = this.diseaseRepository.save(newDisease);
             }
 
             reader.readLine();
@@ -76,12 +76,14 @@ public class StructureService {
                     if (peptide == null) {
                         Peptide tosavePeptide = new Peptide();
                         tosavePeptide.setSequence(peptideSeq);
-                        this.peptideRepository.save(tosavePeptide);
+                        peptide = this.peptideRepository.save(tosavePeptide);
                     }
 
                     peptide_activity = new Peptide_Activity();
                     peptide_activity.setDisease(disease);
+                    peptide_activity.setPeptide(peptide);
                     peptide_activity.setActivityClass(activity);
+
                     Example<Peptide_Activity> example = Example.of(peptide_activity);
                     if (!this.peptideActivityRepository.exists(example)) {
 
