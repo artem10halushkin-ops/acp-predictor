@@ -10,18 +10,20 @@ import service.PeptidesService;
 @RestController
 @RequestMapping("api/diseases")
 public class DiseaseController {
-    private DiseaseService diseaseService;
+    private final DiseaseService diseaseService;
     //private PeptidesService peptidesService;
+
+    public DiseaseController(DiseaseService diseaseService) {
+        this.diseaseService = diseaseService;
+
+    }
 
     @PostMapping("/upload")
     public ResponseEntity<String> postSamples(@RequestParam("file") MultipartFile file) {
 
 
-
         return ResponseEntity.noContent().build();
     }
-
-
 
 
 }
