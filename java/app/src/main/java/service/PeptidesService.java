@@ -36,6 +36,18 @@ public class PeptidesService {
             String line, name;
             name = reader.readLine();
 
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split("\t");
+
+
+                if (data.length >= 3) {
+                    Peptide peptide = new Peptide();
+                    peptide.setSequence(data[1]);
+
+
+                }
+
+            }
 
         } catch (Exception e) {
 
