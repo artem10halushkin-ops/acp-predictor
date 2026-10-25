@@ -21,6 +21,7 @@ public class DiseaseController {
     @PostMapping("/upload")
     public ResponseEntity<String> postSamples(@RequestParam("file") MultipartFile file) {
 
+       // this.diseaseService.
 
         return ResponseEntity.noContent().build();
     }
