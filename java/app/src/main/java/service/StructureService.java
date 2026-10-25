@@ -4,6 +4,7 @@ import entity.Disease;
 import entity.Peptide;
 import entity.Peptide_Activity;
 import org.springframework.data.domain.Example;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -118,6 +119,15 @@ public class StructureService {
                 .map(p -> p.getPeptide()).toList();
 
         return peptides;
+    }
+
+
+    public ResponseEntity<Void> clearAllTheTables() {
+
+        this.peptideActivityRepository.deleteAll();
+        this.peptideRepository.deleteAll();
+        this.diseaseRepository.deleteAll();
+        return ResponseEntity.noContent().build();
     }
 
 }
