@@ -26,6 +26,16 @@ class Peptide_Activity {
     public Peptide_Activity() {
     }
 
+    public String getActivityClass() {
+
+        return activityClass;
+    }
+
+    public void setActivityClass(String activityClass) {
+
+        this.activityClass = activityClass;
+    }
+
 
     public void setId(Long id) {
         this.id = id;
