@@ -41,7 +41,7 @@ public class StructureService {
 
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
-            String name, line, peptideSeq;
+            String name, line, peptideSeq, activity;
             Disease disease;
             Peptide peptide;
             Peptide_Activity peptide_activity;
@@ -65,13 +65,32 @@ public class StructureService {
 
 
             while ((line = reader.readLine()) != null) {
+
+
                 String[] data = line.split("\t");
-                peptideSeq = data[1];
-                peptide = this.peptideRepository.findBySequence(peptideSeq).orElse(null);
-                if (peptide == null) {
-                    Peptide tosavePeptide = new Peptide();
-                    tosavePeptide.setSequence(peptideSeq);
-                    this.peptideRepository.save(tosavePeptide);
+
+                if (data.length >= 3) {
+                    peptideSeq = data[1];
+                    activity = data[2];
+                    peptide = this.peptideRepository.findBySequence(peptideSeq).orElse(null);
+                    if (peptide == null) {
+                        Peptide tosavePeptide = new Peptide();
+                        tosavePeptide.setSequence(peptideSeq);
+                        this.peptideRepository.save(tosavePeptide);
+                    }
+
+                    peptide_activity = new Peptide_Activity();
+                    peptide_activity.setDisease(disease);
+                    peptide_activity.setActivityClass(activity);
+                    Example<Peptide_Activity> example = Example.of(peptide_activity);
+                    if (!this.peptideActivityRepository.exists(example)) {
+
+                        this.peptideActivityRepository.save(peptide_activity);
+                    }
+
+                } else {
+
+                    return -5;
                 }
 
             }

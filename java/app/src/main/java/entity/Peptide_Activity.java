@@ -26,6 +26,7 @@ public class Peptide_Activity {
     public Peptide_Activity() {
     }
 
+
     public String getActivityClass() {
 
         return activityClass;
@@ -65,5 +66,6 @@ public class Peptide_Activity {
 
         this.disease = d;
     }
+
 
 }
