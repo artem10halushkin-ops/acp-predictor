@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "peptide_activities")
-class Peptide_Activity {
+public class Peptide_Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
