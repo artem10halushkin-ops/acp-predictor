@@ -1,6 +1,8 @@
 package service;
 
 import entity.Disease;
+import entity.Peptide;
+import entity.Peptide_Activity;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,9 +41,10 @@ public class StructureService {
 
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
-
-            String name, line;
+            String name, line, peptideSeq;
             Disease disease;
+            Peptide peptide;
+            Peptide_Activity peptide_activity;
 
 
             name = reader.readLine();
@@ -49,12 +52,28 @@ public class StructureService {
             if (name == null || name.trim().isEmpty()) {
                 return -3;
             }
-
+            //saving in the first Disease Table
             disease = this.diseaseRepository.findByName(name).orElse(null);
             if (disease == null) {
                 Disease newDisease = new Disease();
                 newDisease.setName(name);
                 this.diseaseRepository.save(newDisease);
+            }
+
+            reader.readLine();
+            // second part saving in the second Disease Table
+
+
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split("\t");
+                peptideSeq = data[1];
+                peptide = this.peptideRepository.findBySequence(peptideSeq).orElse(null);
+                if (peptide == null) {
+                    Peptide tosavePeptide = new Peptide();
+                    tosavePeptide.setSequence(peptideSeq);
+                    this.peptideRepository.save(tosavePeptide);
+                }
+
             }
 
 
