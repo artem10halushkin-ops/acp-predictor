@@ -5,22 +5,15 @@ import entity.Peptide;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.function.ServerRequest;
 import service.StructureService;
 
-import javax.xml.stream.events.EntityReference;
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("api/data")
 public class MainController {
 
@@ -32,27 +25,34 @@ public class MainController {
 
 
     @PostMapping("/upload")
-    public void uploadTable(MultipartFile file) {
-
+    public ResponseEntity<String> uploadTable(MultipartFile file) {
+        String message = "";
         switch (this.structureService.upload(file)) {
             case 0:
+                message = "Uploading was successful.";
                 System.out.println("Uploading was successful.");
-                break;
+                return ResponseEntity.ok(message);
             case -1:
                 System.out.println("file is empty.");
                 break;
             case -2:
-                System.out.println("Something went wrong within try");
+                message = "Something went wrong within try";
+
                 break;
             case -3:
-                System.out.println("Name of the table is problematic");
+                message = "Name of the table is problematic";
+                System.out.println(message);
                 break;
             case -4:
-                System.out.println("wrong amount of columns in the given table");
+                message = "wrong amount of columns in the given table";
+                System.out.println(message);
                 break;
+            default:
+                message = "default";
+
         }
 
-
+        return ResponseEntity.badRequest().body(message);
     }
 
     @GetMapping("/download")
