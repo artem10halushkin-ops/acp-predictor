@@ -3,12 +3,14 @@ package controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import service.StructureService;
 
+import javax.xml.stream.events.EntityReference;
 import java.io.File;
 
 @Controller
@@ -46,6 +48,13 @@ public class MainController {
 
 
         return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("")
+    public ResponseEntity<Void> clearTheTables() {
+
+        this.structureService.clearAllTheTables();
+        return ResponseEntity.noContent().build();
     }
 
 
