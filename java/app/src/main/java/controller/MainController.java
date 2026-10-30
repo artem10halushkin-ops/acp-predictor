@@ -13,6 +13,7 @@ import service.StructureService;
 
 import javax.xml.stream.events.EntityReference;
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,8 +59,12 @@ public class MainController {
         StringBuilder content = new StringBuilder();
         content.append("ID, Sequence\n");
         for (Peptide p : list) {
-            content.append(p.getId()).append(p.getSequence()).append("\n");
+            content.append(p.getId()).append(",").append(p.getSequence()).append("\n");
         }
+
+        byte[] contentInBytes = content.toString().getBytes(StandardCharsets.UTF_8);
+
+
 
 
         return ResponseEntity.ok().build();
