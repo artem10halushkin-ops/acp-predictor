@@ -1,6 +1,7 @@
-package repository;
+package com.predictor.app.repository;
 
-import entity.Disease;
+
+import com.predictor.app.entity.Disease;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,11 @@
-package service;
+package com.predictor.app.service;
 
-import entity.Peptide;
-import jdk.jshell.spi.ExecutionControlProvider;
+
+import com.predictor.app.entity.Peptide;
+import com.predictor.app.repository.PeptideRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import repository.PeptideRepository;
+
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

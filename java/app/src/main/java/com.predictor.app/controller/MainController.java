@@ -1,16 +1,17 @@
-package controller;
+package com.predictor.app.controller;
 
 
-import entity.Peptide;
+import com.predictor.app.entity.Peptide;
+import com.predictor.app.service.StructureService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import service.StructureService;
 
+
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -27,30 +28,34 @@ public class MainController {
     @PostMapping("/upload")
     public ResponseEntity<String> uploadTable(MultipartFile file) {
         String message = "";
-        switch (this.structureService.upload(file)) {
-            case 0:
-                message = "Uploading was successful.";
-                System.out.println("Uploading was successful.");
-                return ResponseEntity.ok(message);
-            case -1:
-                message = "file is empty.";
-                System.out.println(message);
-                break;
-            case -2:
-                message = "Something went wrong within try";
-                System.out.println(message);
-                break;
-            case -3:
-                message = "Name of the table is problematic";
-                System.out.println(message);
-                break;
-            case -4:
-                message = "wrong amount of columns in the given table";
-                System.out.println(message);
-                break;
-            default:
-                message = "default";
+        try {
+            switch (this.structureService.upload(file.getInputStream())) {
+                case 0:
+                    message = "Uploading was successful.";
+                    System.out.println("Uploading was successful.");
+                    return ResponseEntity.ok(message);
+                case -1:
+                    message = "file is empty.";
+                    System.out.println(message);
+                    break;
+                case -2:
+                    message = "Something went wrong within try";
+                    System.out.println(message);
+                    break;
+                case -3:
+                    message = "Name of the table is problematic";
+                    System.out.println(message);
+                    break;
+                case -4:
+                    message = "wrong amount of columns in the given table";
+                    System.out.println(message);
+                    break;
+                default:
+                    message = "default";
 
+            }
+        } catch (IOException exception) {
+            return ResponseEntity.badRequest().body(exception.getMessage());
         }
 
         return ResponseEntity.badRequest().body(message);

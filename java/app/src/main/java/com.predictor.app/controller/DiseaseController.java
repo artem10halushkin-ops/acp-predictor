@@ -1,11 +1,10 @@
-package controller;
+package com.predictor.app.controller;
 
+import com.predictor.app.service.DiseaseService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import service.DiseaseService;
-import service.PeptidesService;
-import service.StructureService;
+
 
 
 @RestController

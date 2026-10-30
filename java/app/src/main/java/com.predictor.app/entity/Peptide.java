@@ -1,10 +1,10 @@
-package entity;
+package com.predictor.app.entity;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "diseases")
-public class Disease {
+@Table(name = "peptides")
+public class Peptide {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,9 +12,11 @@ public class Disease {
 
 
     @Column(nullable = false, unique = true)
-    private String name;
+    private String sequence;
 
-    public Disease() {
+
+    public Peptide() {
+
     }
 
 
@@ -27,14 +29,14 @@ public class Disease {
         return id;
     }
 
-    public String getName() {
+    public String getSequence() {
 
-        return name;
+        return sequence;
     }
 
-    public void setName(String str) {
+    public void setSequence(String str) {
 
-        this.name = str;
+        this.sequence = str;
     }
 
 }

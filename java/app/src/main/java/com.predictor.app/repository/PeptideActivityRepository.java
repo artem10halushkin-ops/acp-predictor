@@ -1,9 +1,9 @@
-package repository;
+package com.predictor.app.repository;
 
-import org.springframework.data.domain.Example;
+import com.predictor.app.entity.Peptide_Activity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import entity.Peptide_Activity;
+
 
 @Repository
 public interface PeptideActivityRepository extends JpaRepository<Peptide_Activity, Long> {

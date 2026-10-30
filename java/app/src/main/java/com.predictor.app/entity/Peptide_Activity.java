@@ -1,4 +1,4 @@
-package entity;
+package com.predictor.app.entity;
 
 import jakarta.persistence.*;
 

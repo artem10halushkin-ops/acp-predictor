@@ -1,21 +1,22 @@
-package service;
+package com.predictor.app.service;
 
-import entity.Disease;
-import entity.Peptide;
-import entity.Peptide_Activity;
+
+import com.predictor.app.entity.Disease;
+import com.predictor.app.entity.Peptide;
+import com.predictor.app.entity.Peptide_Activity;
+import com.predictor.app.repository.DiseaseRepository;
+import com.predictor.app.repository.PeptideActivityRepository;
+import com.predictor.app.repository.PeptideRepository;
 import org.springframework.data.domain.Example;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import repository.DiseaseRepository;
-import repository.PeptideActivityRepository;
-import repository.PeptideRepository;
+
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,15 +34,15 @@ public class StructureService {
     }
 
     @Transactional
-    public int upload(MultipartFile file) {
-
-        if (file.isEmpty()) {
+    public int upload(InputStream fileStream) {
+        //public int upload(MultipartFile file) {
+        if (fileStream == null) {
 
             return -1;
         }
 
 
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream(), StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(fileStream, StandardCharsets.UTF_8))) {
             String name, line, peptideSeq, activity;
             Disease disease;
             Peptide peptide;
