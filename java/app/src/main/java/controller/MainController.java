@@ -1,6 +1,7 @@
 package controller;
 
 
+import entity.Peptide;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,6 +13,8 @@ import service.StructureService;
 
 import javax.xml.stream.events.EntityReference;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("api/data")
@@ -46,9 +49,22 @@ public class MainController {
     @GetMapping("/download")
     public ResponseEntity<byte[]> getActiveSequences() {
 
+        List<Peptide> list = this.structureService.getAllActiveSequences();
+        if (list.isEmpty()) {
+
+            return ResponseEntity.noContent().build();
+        }
+
+        StringBuilder content = new StringBuilder();
+        content.append("ID, Sequence\n");
+        for (Peptide p : list) {
+            content.append(p.getId()).append(p.getSequence()).append("\n");
+        }
+
 
         return ResponseEntity.ok().build();
     }
+
 
     @DeleteMapping("/clear")
     public ResponseEntity<Void> clearTheTables() {

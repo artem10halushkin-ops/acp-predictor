@@ -11,7 +11,7 @@ import service.StructureService;
 @RestController
 @RequestMapping("api/diseases")
 public class DiseaseController {
-   // private final DiseaseService diseaseService;
+    // private final DiseaseService diseaseService;
     private final StructureService structureService;
     //private PeptidesService peptidesService;
 

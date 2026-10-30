@@ -110,7 +110,7 @@ public class StructureService {
 
     public List<Peptide> getAllActiveSequences() {
 
-        List<Peptide> peptides = new ArrayList<>();
+        List<Peptide> peptides;
 
 
         peptides = this.peptideActivityRepository.findAll().stream()
@@ -126,7 +126,6 @@ public class StructureService {
         this.peptideActivityRepository.deleteAll();
         this.peptideRepository.deleteAll();
         this.diseaseRepository.deleteAll();
-        // return ResponseEntity.noContent().build(); ResponseEntity<Void>
     }
 
 }
