@@ -11,13 +11,13 @@ import service.StructureService;
 @RestController
 @RequestMapping("api/diseases")
 public class DiseaseController {
-    // private final DiseaseService diseaseService;
-    private final StructureService structureService;
+    private final DiseaseService diseaseService;
+    //private final StructureService structureService;
     //private PeptidesService peptidesService;
 
-    public DiseaseController(StructureService structureService) {
-        // this.diseaseService = diseaseService;
-        this.structureService = structureService;
+    public DiseaseController(DiseaseService diseaseService) {
+        this.diseaseService = diseaseService;
+        // this.structureService = structureService;
     }
 
     @PostMapping("/upload")

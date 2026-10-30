@@ -7,24 +7,35 @@ services:
       POSTGRES_DB: 'peptide_db'
       POSTGRES_USER: 'admin'
       POSTGRES_PASSWORD: 'secret_code'
+    ports:
+      - "5432:5432"
+
+  api:
+    build:
+      context: ./java
+      dockerfile: 'JavaDockerfile'
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/peptide_db
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: secret_code
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+    depends_on:
+      - db
 
   train:
     build:
       context: ./python
       dockerfile: 'PythonDockerfile'
     ports:
-      - "8080:8080"
+      - "8000:8000"
     depends_on:
       - db
+      - api
 
 
-  api:
-    build:
-      context: ./java
-      dockerfile: 'JavaDockerfile'
-    depends_on:
-      - db
-      - train
 
 
 

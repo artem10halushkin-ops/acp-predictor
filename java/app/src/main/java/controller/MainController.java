@@ -38,7 +38,7 @@ public class MainController {
                 break;
             case -2:
                 message = "Something went wrong within try";
-
+                System.out.println(message);
                 break;
             case -3:
                 message = "Name of the table is problematic";
