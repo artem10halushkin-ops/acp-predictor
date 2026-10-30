@@ -1,4 +1,5 @@
 FROM ubuntu:latest
 LABEL authors="artemmacpro"
-
-ENTRYPOINT ["top", "-b"]
+WORKDIR /app
+COPY . .
+CMD[]

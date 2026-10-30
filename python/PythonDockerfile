@@ -1,9 +1,9 @@
 FROM python:3.11-slim
-WORKDIR /app
+WORKDIR /app/python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 LABEL authors="artemmacpro"
 
-CMD ["python3", "loader.py"]
+CMD ["python3"]
