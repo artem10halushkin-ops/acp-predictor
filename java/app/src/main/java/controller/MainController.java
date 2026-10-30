@@ -37,14 +37,19 @@ public class MainController {
         switch (this.structureService.upload(file)) {
             case 0:
                 System.out.println("Uploading was successful.");
+                break;
             case -1:
                 System.out.println("file is empty.");
+                break;
             case -2:
                 System.out.println("Something went wrong within try");
+                break;
             case -3:
                 System.out.println("Name of the table is problematic");
+                break;
             case -4:
                 System.out.println("wrong amount of columns in the given table");
+                break;
         }
 
 
