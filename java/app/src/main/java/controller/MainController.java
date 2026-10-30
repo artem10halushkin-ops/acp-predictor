@@ -2,6 +2,8 @@ package controller;
 
 
 import entity.Peptide;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.function.ServerRequest;
 import service.StructureService;
 
 import javax.xml.stream.events.EntityReference;
@@ -64,10 +67,12 @@ public class MainController {
 
         byte[] contentInBytes = content.toString().getBytes(StandardCharsets.UTF_8);
 
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.TEXT_PLAIN);
+        headers.setContentDispositionFormData("attachment", "active_peptides.csv");
 
 
-
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().headers(headers).contentLength(contentInBytes.length).body(contentInBytes);
     }
 
 
