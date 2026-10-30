@@ -43,14 +43,14 @@ public class MainController {
 
     }
 
-    @GetMapping("/download/")
+    @GetMapping("/download")
     public ResponseEntity<byte[]> getActiveSequences() {
 
 
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/clear")
     public ResponseEntity<Void> clearTheTables() {
 
         this.structureService.clearAllTheTables();
