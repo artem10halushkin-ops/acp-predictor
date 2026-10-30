@@ -122,12 +122,11 @@ public class StructureService {
     }
 
 
-    public ResponseEntity<Void> clearAllTheTables() {
-
+    public void clearAllTheTables() {
         this.peptideActivityRepository.deleteAll();
         this.peptideRepository.deleteAll();
         this.diseaseRepository.deleteAll();
-        return ResponseEntity.noContent().build();
+        // return ResponseEntity.noContent().build(); ResponseEntity<Void>
     }
 
 }
