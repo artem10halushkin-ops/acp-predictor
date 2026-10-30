@@ -33,7 +33,8 @@ public class MainController {
                 System.out.println("Uploading was successful.");
                 return ResponseEntity.ok(message);
             case -1:
-                System.out.println("file is empty.");
+                message = "file is empty.";
+                System.out.println(message);
                 break;
             case -2:
                 message = "Something went wrong within try";
